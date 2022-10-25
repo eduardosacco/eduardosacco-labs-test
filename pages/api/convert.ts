@@ -1,15 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { constants as httpConstants } from 'http2';
 
 type ConvertionResult = {
   isSuccess: boolean;
   data: string;
 };
 
-export default (
+export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ConvertionResult>
-) => {
-  res.status(200).json({ isSuccess: true, data: 'Sixty two' });
+  res: NextApiResponse<string>
+) {
+  const number = Array.isArray(req.query) ? req.query[0] : req.query;
+  const result = convertToWords(number);
+  const statusCode = result.isSuccess
+    ? httpConstants.HTTP_STATUS_OK
+    : httpConstants.HTTP_STATUS_BAD_REQUEST;
+
+  res.status(statusCode).json(result.data);
 };
 
 export function convertToWords(numStr: string): ConvertionResult {
