@@ -15,7 +15,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const {number} = req.query as Record<string,string>;
+  const {number} = req.query as { number: string};
   const result = convertToWords(number);
   const statusCode = result.isSuccess
     ? httpConstants.HTTP_STATUS_OK
