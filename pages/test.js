@@ -3,15 +3,18 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
+import { convertToWords } from './api/convert';
 
 export default function Test() {
   const MAX_ALLOWED_NUMBER = 9999999999;
-  const [value, setValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [numberWords, setNumberWords] = useState('');
 
-  const onChange = (event) => {
+  const onChangeHandler = (event) => {
     const num = +event.target.value;
-    setValue(event.target.value);
+    setInputValue(event.target.value);
+    setNumberWords('');
 
     if (isNaN(num) || !Number.isInteger(num) || num < 0) {
       setErrorMsg('Number must be a positive integer');
@@ -26,9 +29,17 @@ export default function Test() {
     setErrorMsg('');
   };
 
-  const onClick = () => {
-    
-  }
+  const onClickHandler = () => {
+    const result = convertToWords(inputValue);
+    if (!result.isSuccess) {
+      //TODO: improve this
+      alert(result.data);
+      setInputValue('');
+      return;
+    }
+
+    setNumberWords(result.data);
+  };
 
   return (
     <>
@@ -47,25 +58,35 @@ export default function Test() {
           </Typography>
           <TextField
             id="number-input"
-            value={value}
+            value={inputValue}
             label="Number"
             variant="outlined"
-            onChange={onChange}
+            onChange={onChangeHandler}
             error={errorMsg !== ''}
             helperText={errorMsg}
           />
           <Box
             sx={{
               my: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
             }}
           >
-            <Button variant="contained" disabled={errorMsg !== ''}>
+            <Button
+              variant="contained"
+              disabled={errorMsg !== ''}
+              onClick={onClickHandler}
+            >
               Convert!
             </Button>
+          </Box>
+          <Box
+            sx={{
+              my: 4,
+              textAlign: 'center',
+            }}
+          >
+            <Typography variant="h5" component="h2" gutterBottom>
+              {numberWords}
+            </Typography>
           </Box>
         </Box>
       </Container>
