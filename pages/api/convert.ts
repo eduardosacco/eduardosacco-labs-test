@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { constants as httpConstants } from 'http2';
+import  httpConstants  from 'http-status';
 
 type ConvertionResult = {
   isSuccess: boolean;
@@ -18,8 +18,8 @@ export default function handler(
   const {number} = req.query as { number: string};
   const result = convertToWords(number);
   const statusCode = result.isSuccess
-    ? httpConstants.HTTP_STATUS_OK
-    : httpConstants.HTTP_STATUS_BAD_REQUEST;
+    ? httpConstants.OK
+    : httpConstants.BAD_REQUEST;
 
   res.status(statusCode).json({data: result.data});
 };
