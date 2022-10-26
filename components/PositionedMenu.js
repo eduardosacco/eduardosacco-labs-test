@@ -47,8 +47,9 @@ export default function PositionedMenu() {
         <Link href="/test" color="secondary">
           <MenuItem onClick={handleClose}>Test</MenuItem>
         </Link>
-        <Link href="/crypto" color="secondary"></Link>
-        <MenuItem onClick={handleClose}>Crypto</MenuItem>
+        <Link href="/crypto" color="secondary">
+          <MenuItem onClick={handleClose}>Crypto</MenuItem>
+        </Link>
       </Menu>
     </div>
   );
