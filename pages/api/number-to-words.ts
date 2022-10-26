@@ -16,7 +16,7 @@ export default function handler(
   res: NextApiResponse<ResponseData>
 ) {
   const {number} = req.query as { number: string};
-  const result = convertToWords(number);
+  const result = numberToWords(number);
   const statusCode = result.isSuccess
     ? httpConstants.OK
     : httpConstants.BAD_REQUEST;
@@ -24,7 +24,7 @@ export default function handler(
   res.status(statusCode).json({data: result.data});
 };
 
-export function convertToWords(numStr: string): ConvertionResult {
+export function numberToWords(numStr: string): ConvertionResult {
   //Define number words constants
   const MAX_ALLOWED_NUMBER = 9999999999999; //This number is kind of arbitrary
   const NUMBER_ORDER = ['', '', 'thousand', 'million', 'billion', 'trillion'];

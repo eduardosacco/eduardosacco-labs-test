@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { convertToWords } from '../api/convert';
+import { numberToWords } from '../api/number-to-words';
 
 const MAX_ALLOWED_NUMBER = 9999999999;
 
@@ -118,7 +118,7 @@ export const getServerSideProps = async (context) => {
     };
   }
 
-  const result = convertToWords(input);
+  const result = numberToWords(input);
 
   //Kind of an edge case since we have validations
   if (!result.isSuccess) {

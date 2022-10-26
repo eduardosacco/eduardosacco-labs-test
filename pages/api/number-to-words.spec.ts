@@ -1,4 +1,4 @@
-import handler, { getChunksOfThree, convertToWords } from './convert';
+import handler, { getChunksOfThree, numberToWords } from './number-to-words';
 import { constants as httpConstants } from 'http2';
 import httpMocks from 'node-mocks-http';
 import { NextApiResponse } from 'next';
@@ -34,7 +34,7 @@ describe('convertToWords', () => {
   ])(
     'should return error when called with invalid input: %s',
     (input, expected) => {
-      const result = convertToWords(input);
+      const result = numberToWords(input);
       expect(result.isSuccess).toBeFalsy();
       expect(result.data).toEqual(expected);
     }
@@ -82,7 +82,7 @@ describe('convertToWords', () => {
       'nine trillion nine hundred ninety-nine billion nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine',
     ],
   ])('should correctly convert %s into words', (input, expected) => {
-    const result = convertToWords(input);
+    const result = numberToWords(input);
     expect(result.isSuccess).toBeTruthy();
     expect(result.data).toEqual(expected);
   });
