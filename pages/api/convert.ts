@@ -6,17 +6,22 @@ type ConvertionResult = {
   data: string;
 };
 
+export type ResponseData = {
+  data: string
+}
+
+// TODO: Would like to investigate how to add dependency injection to the handlers for more complex cases
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<string>
+  res: NextApiResponse<ResponseData>
 ) {
-  const number = Array.isArray(req.query) ? req.query[0] : req.query;
+  const {number} = req.query as Record<string,string>;
   const result = convertToWords(number);
   const statusCode = result.isSuccess
     ? httpConstants.HTTP_STATUS_OK
     : httpConstants.HTTP_STATUS_BAD_REQUEST;
 
-  res.status(statusCode).json(result.data);
+  res.status(statusCode).json({data: result.data});
 };
 
 export function convertToWords(numStr: string): ConvertionResult {

@@ -1,4 +1,7 @@
-import { getChunksOfThree, convertToWords } from './convert';
+import handler, { getChunksOfThree, convertToWords } from './convert';
+import { constants as httpConstants } from 'http2';
+import httpMocks from 'node-mocks-http';
+import { NextApiResponse } from 'next';
 
 describe('getChunksOfThree', () => {
   it.each([
@@ -82,5 +85,43 @@ describe('convertToWords', () => {
     const result = convertToWords(input);
     expect(result.isSuccess).toBeTruthy();
     expect(result.data).toEqual(expected);
+  });
+});
+
+describe('handler', () => {
+  it('should return OK and data for correct input', () => {
+    // Given
+    const mockRequest: any = {
+      query: {
+        number: '10',
+      },
+    };
+    var mockResponse = httpMocks.createResponse<NextApiResponse>();
+
+    // When
+    handler(mockRequest, mockResponse);
+
+    // Then
+    expect(mockResponse.statusCode).toBe(httpConstants.HTTP_STATUS_OK);
+    expect(mockResponse._getJSONData()).toEqual({ data: 'ten' });
+  });
+
+  it('should return BAD_REQUEST and data for incorrect input', () => {
+    // Given
+    const mockRequest: any = {
+      query: {
+        number: 'hi',
+      },
+    };
+    var mockResponse = httpMocks.createResponse<NextApiResponse>();
+
+    // When
+    handler(mockRequest, mockResponse);
+
+    // Then
+    expect(mockResponse.statusCode).toBe(httpConstants.HTTP_STATUS_BAD_REQUEST);
+    expect(mockResponse._getJSONData()).toEqual({
+      data: 'Number must be a positive integer',
+    });
   });
 });
