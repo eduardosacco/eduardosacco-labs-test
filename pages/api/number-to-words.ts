@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import  httpConstants  from 'http-status';
+import httpConstants from 'http-status';
 
 type ConvertionResult = {
   isSuccess: boolean;
@@ -7,24 +7,24 @@ type ConvertionResult = {
 };
 
 export type ResponseData = {
-  data: string
-}
+  data: string;
+};
 
 // TODO: Would like to investigate how to add dependency injection to the handlers for more complex cases
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const {number} = req.query as { number: string};
+  const { number } = req.query as { number: string };
   const result = numberToWords(number);
   const statusCode = result.isSuccess
     ? httpConstants.OK
     : httpConstants.BAD_REQUEST;
 
-  res.status(statusCode).json({data: result.data});
-};
+  res.status(statusCode).json({ data: result.data });
+}
 
-export function numberToWords(numStr: string): ConvertionResult {
+export function numberToWords(input: string | number): ConvertionResult {
   //Define number words constants
   const MAX_ALLOWED_NUMBER = 9999999999999; //This number is kind of arbitrary
   const NUMBER_ORDER = ['', '', 'thousand', 'million', 'billion', 'trillion'];
@@ -65,8 +65,17 @@ export function numberToWords(numStr: string): ConvertionResult {
     'ninety',
   ];
 
+  let num: number;
+  let numStr: string;
+  if (typeof input === 'number') {
+    num = input;
+    numStr = input.toString();
+  } else {
+    numStr = input;
+    num = +input;
+  }
+
   //Validations
-  const num = +numStr;
   if (isNaN(num) || !Number.isInteger(num) || num < 0) {
     return {
       isSuccess: false,

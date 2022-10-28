@@ -86,6 +86,23 @@ describe('convertToWords', () => {
     expect(result.isSuccess).toBeTruthy();
     expect(result.data).toEqual(expected);
   });
+
+  it.each([
+    [0, 'zero'],
+    [157, 'one hundred fifty-seven'],
+    [1789, 'one thousand seven hundred eighty-nine'],
+    [
+      9999999999999,
+      'nine trillion nine hundred ninety-nine billion nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine',
+    ],
+  ])(
+    'should correctly convert %s input as number into words',
+    (input, expected) => {
+      const result = numberToWords(input);
+      expect(result.isSuccess).toBeTruthy();
+      expect(result.data).toEqual(expected);
+    }
+  );
 });
 
 describe('handler', () => {
