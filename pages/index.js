@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from '../src/Link';
-import ProTip from '../src/ProTip';
 
 export default function Home() {
   return (
@@ -23,7 +22,6 @@ export default function Home() {
           <Link href='/about' color='secondary'>
             Go to the about page
           </Link>
-          <ProTip />
         </Box>
       </Container>
     </>
