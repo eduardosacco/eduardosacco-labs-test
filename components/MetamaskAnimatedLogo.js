@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ModelViewer from '@metamask/logo';
 
+// Based on: https://bit.cloud/lil/baseth/metamask-logo/~code
 export default class MetamaskAnimatedLogo extends Component {
   componentDidMount() {
     this.viewer = ModelViewer({
