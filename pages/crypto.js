@@ -1,4 +1,4 @@
-import { Button, MenuItem, TextField } from '@mui/material';
+import { Button, MenuItem, Modal, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -9,22 +9,27 @@ import { useMetamask } from 'use-metamask';
 import * as Web3 from 'Web3';
 import DisableInServerSide from '../components/DisableInServerSide';
 import metamaskLogo from '../images/metamask.png';
-import { addEthereumChain } from '../utils/metamask';
+import metamaskDisconnectImage from '../images/metamask-disconnect.png';
+import { addEthereumChain } from '../utils/wallet';
 import { NETWORKS } from '../utils/networks';
+import Link from '../src/Link';
 
 function Web3Connect({ input, result, errorMessage }) {
-  const [isConnected, setIsConnected] = useState(false);
   const { connect, metaState } = useMetamask();
   const [networkToAdd, setNetworkToAdd] = useState('rinkeby');
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const networkOptions = Object.keys(NETWORKS);
 
+  // TODO: use callback
   const connectToMetamask = () => {
-    if (metaState.isAvailable && !metaState.isConnected && !isConnected) {
+    if (metaState.isAvailable && !metaState.isConnected) {
       (async () => {
         try {
           await connect(Web3);
-          setIsConnected(true);
         } catch (error) {
           console.log(error);
         }
@@ -32,11 +37,11 @@ function Web3Connect({ input, result, errorMessage }) {
     }
   };
 
-  const onClickConnectionHandler = (event) => {
-    if (!isConnected) {
+  const onClickConnectionHandler = async (event) => {
+    if (metaState.isAvailable && !metaState.isConnected) {
       return connectToMetamask();
     }
-    setIsConnected(false);
+    await handleOpen();
   };
 
   const onChangeNetworkSelectHandler = (event) => {
@@ -49,14 +54,14 @@ function Web3Connect({ input, result, errorMessage }) {
 
   useEffect(() => {
     connectToMetamask();
-  }, [isConnected, metaState.isConnected]);
+  }, [metaState.isConnected]);
 
-  const metaMaskAvailableContent = (
-    <>
+  const metaMaskConnectedContent = (
+    <Box
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
       <Typography variant="h5" component="h2" gutterBottom>
-        {metaState.isConnected
-          ? `You are connected with account:`
-          : `Connect with Metamask!`}
+        You are connected with account:
       </Typography>
       <Box
         sx={{
@@ -69,11 +74,32 @@ function Web3Connect({ input, result, errorMessage }) {
           {metaState.account[0]}
         </Typography>
       </Box>
+    </Box>
+  );
+
+  const metaMaskNotConnectedContent = (
+    <Box
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
+      <Typography variant="h5" component="h2" gutterBottom>
+        Connect with MetaMask
+      </Typography>
+    </Box>
+  );
+
+  const metaMaskAvailableContent = (
+    <>
       <Box
         sx={{
           my: 4,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
+        {metaState.isConnected
+          ? metaMaskConnectedContent
+          : metaMaskNotConnectedContent}
         <Button
           variant="contained"
           disabled={false}
@@ -121,7 +147,7 @@ function Web3Connect({ input, result, errorMessage }) {
         >
           <Button
             variant="contained"
-            disabled={!isConnected}
+            disabled={!metaState.isConnected}
             onClick={onClickAddNetworkHandler}
           >
             Add Network
@@ -156,6 +182,47 @@ function Web3Connect({ input, result, errorMessage }) {
     </Box>
   );
 
+  const disconnectModal = (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 400,
+          p: 2,
+          bgcolor: 'background.default',
+          border: '2px solid #000',
+          boxShadow: 24,
+          alignItems: 'center',
+          alignContent: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          Use Metamask to disconnect
+        </Typography>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          {'More info on: '}
+          <Link
+            href="https://metamask.zendesk.com/hc/en-us/articles/360059535551-Disconnect-wallet-from-a-dapp"
+            target="_blank"
+            color="secondary"
+          >
+            MetaMask support page
+          </Link>
+        </Typography>
+        <Image src={metamaskDisconnectImage} alt="Metamask disconnect" />
+      </Box>
+    </Modal>
+  );
+
   return (
     <>
       <Container maxWidth="lg">
@@ -172,13 +239,19 @@ function Web3Connect({ input, result, errorMessage }) {
             Web3 Metamask Connect Test
           </Typography>
           <Box sx={{ my: 4, height: 50 }}>
-            <Image src={metamaskLogo} alt="Metamask Logo" width='50' height='50' />
+            <Image
+              src={metamaskLogo}
+              alt="Metamask Logo"
+              width="50"
+              height="50"
+            />
           </Box>
           {metaState.isAvailable
             ? metaMaskAvailableContent
             : metaMaskNotAvailableContent}
         </Box>
       </Container>
+      {disconnectModal}
     </>
   );
 }
