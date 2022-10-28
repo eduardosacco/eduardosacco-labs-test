@@ -1,13 +1,6 @@
-// export default function SafeHydrate(props) {
-//   return (
-//     <div suppressHydrationWarning>
-//       {typeof window === 'undefined' ? null : props.children}
-//     </div>
-//   );
-// }
-
 import { useState, useEffect } from 'react';
 
+// Source: https://github.com/mdtanrikulu/use-metamask/issues/18
 export default function DisableInServerSide({ children }) {
   const [mountedState, setMountedState] = useState(false);
   useEffect(() => {
