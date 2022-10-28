@@ -3,21 +3,24 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useCallback, useEffect, useState } from 'react';
 import Blockie from 'react-blockies';
 import { useMetamask } from 'use-metamask';
 import * as Web3 from 'Web3';
 import DisableInServerSide from '../components/DisableInServerSide';
-import metamaskLogo from '../images/metamask.png';
 import metamaskDisconnectImage from '../images/metamask-disconnect.png';
-import { addEthereumChain } from '../utils/wallet';
-import { NETWORKS } from '../utils/networks';
+import metamaskLogo from '../images/metamask.png';
 import Link from '../src/Link';
+import { NETWORKS } from '../utils/networks';
+import { addEthereumChain } from '../utils/wallet';
 
 function Web3Connect({ input, result, errorMessage }) {
   const { connect, metaState } = useMetamask();
   const [networkToAdd, setNetworkToAdd] = useState('rinkeby');
   const [open, setOpen] = useState(false);
+
+  const router = useRouter();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -25,21 +28,19 @@ function Web3Connect({ input, result, errorMessage }) {
   const networkOptions = Object.keys(NETWORKS);
 
   // TODO: use callback
-  const connectToMetamask = () => {
+  const connectToMetamask = useCallback(async () => {
     if (metaState.isAvailable && !metaState.isConnected) {
-      (async () => {
-        try {
-          await connect(Web3);
-        } catch (error) {
-          console.log(error);
-        }
-      })();
+      try {
+        await connect(Web3);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  };
+  }, [metaState.isAvailable, metaState.isConnected, connect]);
 
-  const onClickConnectionHandler = async (event) => {
+  const onClickConnectionHandler = async () => {
     if (metaState.isAvailable && !metaState.isConnected) {
-      return connectToMetamask();
+      return router.reload();
     }
     await handleOpen();
   };
@@ -54,7 +55,7 @@ function Web3Connect({ input, result, errorMessage }) {
 
   useEffect(() => {
     connectToMetamask();
-  }, [metaState.isConnected]);
+  }, [connectToMetamask]);
 
   const metaMaskConnectedContent = (
     <Box
