@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <Box
       sx={{
-        my: 4,
+        my: 2,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
