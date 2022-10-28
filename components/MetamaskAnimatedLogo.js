@@ -11,7 +11,6 @@ export default class MetamaskAnimatedLogo extends Component {
       width: 100,
       followMouse: true,
     });
-    console.log(this.viewer);
 
     if (!this.el.hasChildNodes()) {
       this.el.appendChild(this.viewer.container);
