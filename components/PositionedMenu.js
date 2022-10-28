@@ -3,10 +3,13 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '../src/Link';
+import { useRouter } from 'next/router';
 
 export default function PositionedMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const router = useRouter();
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -14,11 +17,17 @@ export default function PositionedMenu() {
     setAnchorEl(null);
   };
 
+  const menuItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Test', path: '/test' },
+    { label: 'Crypto', path: '/crypto' },
+  ];
+
   return (
     <div>
       <Button
-        id="demo-positioned-button"
-        aria-controls={open ? 'demo-positioned-menu' : undefined}
+        id="menu-button"
+        aria-controls={open ? 'menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
@@ -27,29 +36,21 @@ export default function PositionedMenu() {
         MENU
       </Button>
       <Menu
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
+        id="menu"
+        aria-labelledby="menu-button"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
       >
-        <Link href="/" color="secondary">
-          <MenuItem onClick={handleClose}>Home</MenuItem>
-        </Link>
-        <Link href="/test" color="secondary">
-          <MenuItem onClick={handleClose}>Test</MenuItem>
-        </Link>
-        <Link href="/crypto" color="secondary">
-          <MenuItem onClick={handleClose}>Crypto</MenuItem>
-        </Link>
+        {menuItems.map((item, index) => (
+          <Link
+            key={index}
+            href={item.path}
+            color={router.asPath === item.path ? 'primary' : 'secondary'}
+          >
+            <MenuItem onClick={handleClose}>{item.label}</MenuItem>
+          </Link>
+        ))}
       </Menu>
     </div>
   );
