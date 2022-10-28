@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import Blockie from 'react-blockies';
 import { useMetamask } from 'use-metamask';
-import * as Web3 from 'Web3';
+import * as Web3 from 'web3';
 import DisableInServerSide from '../components/DisableInServerSide';
 import MetamaskAnimatedLogo from '../components/MetamaskAnimatedLogo';
 import metamaskDisconnectImage from '../images/metamask-disconnect.png';
