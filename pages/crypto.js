@@ -1,4 +1,4 @@
-import { Avatar, Button, MenuItem, Modal, TextField } from '@mui/material';
+import { Button, MenuItem, Modal, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -9,8 +9,8 @@ import Blockie from 'react-blockies';
 import { useMetamask } from 'use-metamask';
 import * as Web3 from 'Web3';
 import DisableInServerSide from '../components/DisableInServerSide';
+import MetamaskAnimatedLogo from '../components/MetamaskAnimatedLogo';
 import metamaskDisconnectImage from '../images/metamask-disconnect.png';
-import metamaskLogo from '../images/metamask.png';
 import Link from '../src/Link';
 import { NETWORKS } from '../utils/networks';
 import { switchChain } from '../utils/wallet';
@@ -257,13 +257,12 @@ function Web3Connect({ input, result, errorMessage }) {
           <Typography variant="h4" component="h1" gutterBottom>
             Web3 Metamask Connect Test
           </Typography>
-          <Box sx={{ my: 4, height: 50 }}>
-            <Image
-              src={metamaskLogo}
-              alt="Metamask Logo"
-              width="50"
-              height="50"
-            />
+          <Box
+            sx={{
+               my: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center'
+              }}
+          >
+            <MetamaskAnimatedLogo />
           </Box>
           {metaState.isAvailable
             ? metaMaskAvailableContent
