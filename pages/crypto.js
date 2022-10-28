@@ -1,4 +1,4 @@
-import { Button, MenuItem, Modal, TextField } from '@mui/material';
+import { Avatar, Button, MenuItem, Modal, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -13,11 +13,11 @@ import metamaskDisconnectImage from '../images/metamask-disconnect.png';
 import metamaskLogo from '../images/metamask.png';
 import Link from '../src/Link';
 import { NETWORKS } from '../utils/networks';
-import { addEthereumChain } from '../utils/wallet';
+import { switchChain } from '../utils/wallet';
 
 function Web3Connect({ input, result, errorMessage }) {
   const { connect, metaState } = useMetamask();
-  const [networkToAdd, setNetworkToAdd] = useState('rinkeby');
+  const [selectedNetwork, setSelectedNetwork] = useState('goerli');
   const [open, setOpen] = useState(false);
 
   const router = useRouter();
@@ -39,6 +39,7 @@ function Web3Connect({ input, result, errorMessage }) {
   }, [metaState.isAvailable, metaState.isConnected, connect]);
 
   const onClickConnectionHandler = async () => {
+    console.log(metaState);
     if (metaState.isAvailable && !metaState.isConnected) {
       return router.reload();
     }
@@ -46,11 +47,11 @@ function Web3Connect({ input, result, errorMessage }) {
   };
 
   const onChangeNetworkSelectHandler = (event) => {
-    setNetworkToAdd(event.target.value);
+    setSelectedNetwork(event.target.value);
   };
 
   const onClickAddNetworkHandler = async (event) => {
-    await addEthereumChain(NETWORKS[networkToAdd]);
+    await switchChain(NETWORKS[selectedNetwork]);
   };
 
   useEffect(() => {
@@ -59,21 +60,47 @@ function Web3Connect({ input, result, errorMessage }) {
 
   const metaMaskConnectedContent = (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      sx={{
+        my: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
     >
-      <Typography variant="h5" component="h2" gutterBottom>
-        You are connected with account:
-      </Typography>
       <Box
         sx={{
-          my: 2,
-          textAlign: 'center',
+          display: 'flex',
         }}
       >
-        <Blockie seed={metaState.account[0]} scale={8} />
-        <Typography variant="h5" color="primary" component="h2" gutterBottom>
-          {metaState.account[0]}
-        </Typography>
+        <Box sx={{ mx: 1 }}>
+          <Typography variant="h5" component="h2" gutterBottom>
+            You are connected with account:
+          </Typography>
+        </Box>
+        <Box sx={{ mx: 1 }}>
+          <Blockie seed={metaState.account[0]} />
+        </Box>
+        <Box sx={{ mx: 1 }}>
+          <Typography variant="h5" color="primary" component="h2" gutterBottom>
+            {metaState.account[0]}
+          </Typography>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+        }}
+      >
+        <Box sx={{ mx: 1 }}>
+          <Typography variant="h5" component="h2" gutterBottom>
+            Current network chain id:
+          </Typography>
+        </Box>
+        <Box sx={{ mx: 1 }}>
+          <Typography variant="h5" color="primary" component="h2" gutterBottom>
+            {metaState.chain.id}
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );
@@ -92,7 +119,7 @@ function Web3Connect({ input, result, errorMessage }) {
     <>
       <Box
         sx={{
-          my: 4,
+          my: 2,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -118,22 +145,13 @@ function Web3Connect({ input, result, errorMessage }) {
           alignItems: 'center',
         }}
       >
-        <Box
-          sx={{
-            my: 2,
-          }}
-        >
-          <Typography component="h5" gutterBottom>
-            Add network
-          </Typography>
-        </Box>
         <TextField
           id="outlined-select-currency"
           select
-          label="Select"
-          value={networkToAdd}
+          label="Switch network"
+          value={selectedNetwork}
           onChange={onChangeNetworkSelectHandler}
-          helperText="Please select your currency"
+          helperText="Please desired network"
         >
           {networkOptions.map((network) => (
             <MenuItem key={network} value={network}>
@@ -151,7 +169,7 @@ function Web3Connect({ input, result, errorMessage }) {
             disabled={!metaState.isConnected}
             onClick={onClickAddNetworkHandler}
           >
-            Add Network
+            Switch Network
           </Button>
         </Box>
       </Box>

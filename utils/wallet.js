@@ -2,16 +2,25 @@
 // https://www.npmjs.com/package/@metamask/providers
 // https://docs.metamask.io/guide/rpc-api.html#unrestricted-methods
 
-export async function addEthereumChain(network) {
+export async function switchChain(network) {
   try {
-    await window.ethereum.request({
-      method: 'wallet_addEthereumChain',
-      params: [
-        network
-      ],
+    await ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: network.chainId }],
     });
-  } catch (error) {
-    // handle "add" error
-    console.log(error);
+  } catch (switchError) {
+    // This error code indicates that the chain has not been added to MetaMask.
+    if (switchError.code === 4902) {
+      try {
+        await ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [network],
+
+        });
+      } catch (addError) {
+        // handle "add" error
+      }
+    }
+    // handle other "switch" errors
   }
 }
