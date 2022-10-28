@@ -13,7 +13,7 @@ export default function MenuAppBar() {
             <Toolbar>
                 <PositionedMenu />
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Ed's Experiments Lab
+                    {`Ed's Experiments Lab`}
                 </Typography>
                 <Avatar alt="Eduardo Sacco">
                     <Image src={ed} alt="Eduardo Sacco" layout="fill" />
