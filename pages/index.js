@@ -1,12 +1,15 @@
+import { Card, CardMedia } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Link from '../src/Link';
+import Image from 'next/image';
+import Album from '../components/Album';
+import ToggleColorMode from '../components/ThemeSwitcher';
 
 export default function Home() {
   return (
     <>
-      <Container maxWidth='lg'>
+      <Container maxWidth="lg">
         <Box
           sx={{
             my: 4,
@@ -16,12 +19,44 @@ export default function Home() {
             alignItems: 'center',
           }}
         >
-          <Typography variant='h4' component='h1' gutterBottom>
-            MUI v5 + Next.js with TypeScript example
+          <Typography
+            component="h1"
+            variant="h2"
+            align="center"
+            color="primary"
+            gutterBottom
+          >
+            {`Welcome to Ed's Experiments Lab!`}
           </Typography>
-          <Link href='/about' color='secondary'>
-            Go to the about page
-          </Link>
+
+          <Box sx={{ my: 4 }}>
+            <Album />
+          </Box>
+
+          <Container maxWidth="lg">
+            <Card>
+              <Box sx={{ display: 'flex' }}>
+                <CardMedia
+                  sx={{
+                    mr: 2,
+                    position: 'relative',
+                    width: '50%',
+                    height: 400,
+                  }}
+                >
+                  <Image
+                    alt="electronic-duo"
+                    src="/images/electronic-duo.png"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </CardMedia>
+                <Typography gutterBottom variant="h5">
+                  HOLA WACHO
+                </Typography>
+              </Box>
+            </Card>
+          </Container>
         </Box>
       </Container>
     </>
