@@ -1,9 +1,9 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Link from '../src/Link';
 import { useRouter } from 'next/router';
+import * as React from 'react';
+import Link from '../src/Link';
 
 export default function PositionedMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,6 +27,8 @@ export default function PositionedMenu() {
     <div>
       <Button
         id="menu-button"
+        variant="contained"
+        color="secondary"
         aria-controls={open ? 'menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
