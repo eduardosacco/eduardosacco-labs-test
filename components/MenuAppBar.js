@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Avatar } from '@mui/material';
-import ed from '../images/ed.gif';
 import Image from 'next/image';
 import PositionedMenu from './Menu';
 
@@ -16,7 +15,7 @@ export default function MenuAppBar() {
           {`Ed's Experiments Lab`}
         </Typography>
         <Avatar alt="Eduardo Sacco">
-          <Image src={ed} alt="Eduardo Sacco" layout="fill" />
+          <Image src='/images/ed.gif' alt="Eduardo Sacco" layout="fill" />
         </Avatar>
       </Toolbar>
     </AppBar>
