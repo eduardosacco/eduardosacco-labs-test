@@ -69,6 +69,7 @@ export default function Test({ input, result, errorMessage }) {
             onChange={onChangeHandler}
             error={errorMessageValue !== ''}
             helperText={errorMessageValue}
+            type="number"
           />
           <Box
             sx={{
