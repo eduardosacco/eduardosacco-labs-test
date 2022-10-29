@@ -10,7 +10,7 @@ import { useMetamask } from 'use-metamask';
 import * as Web3 from 'web3';
 import DisableInServerSide from '../components/DisableInServerSide';
 import MetamaskAnimatedLogo from '../components/MetamaskAnimatedLogo';
-import metamaskDisconnectImage from '../images/metamask-disconnect.png';
+import metamaskDisconnectImage from '../public/images/metamask-disconnect.png';
 import Link from '../src/Link';
 import { NETWORKS } from '../utils/networks';
 import { switchChain } from '../utils/wallet';
