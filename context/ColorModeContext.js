@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';;
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 
 const ColorModeContext = React.createContext({});
@@ -10,29 +10,22 @@ export const ColorModeProvider = ({ children }) => {
     setColorMode((colorMode) => (colorMode === 'light' ? 'dark' : 'light'));
   }, []);
 
-  const theme = createTheme({
-    palette: {
-      mode: colorMode,
-      // primary: {
-      //   main: '#3DFFD0',
-      // },
-      // secondary: {
-      //   main: '#EBB3D5',
-      // },
-      // background: {
-      //   default: '#141414',
-      // },
-    },
-    typography: {
-      fontFamily: 'Space Grotesk, Roboto',
-    },
-  });
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: colorMode,
+        },
+        typography: {
+          fontFamily: 'Space Grotesk, Roboto',
+        },
+      }),
+    [colorMode]
+  );
 
   return (
     <ColorModeContext.Provider value={{ colorMode, toggleColorMode }}>
-      <ThemeProvider theme={theme}>
-      {children}
-      </ThemeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ColorModeContext.Provider>
   );
 };

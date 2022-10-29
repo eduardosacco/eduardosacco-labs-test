@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Avatar } from '@mui/material';
 import Image from 'next/image';
 import PositionedMenu from './Menu';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export default function MenuAppBar() {
   return (
@@ -14,8 +15,11 @@ export default function MenuAppBar() {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {`Ed's Experiments Lab`}
         </Typography>
+        <Box sx={{ mx: 1 }}>
+          <ThemeSwitcher />
+        </Box>
         <Avatar alt="Eduardo Sacco">
-          <Image src='/images/ed.gif' alt="Eduardo Sacco" layout="fill" />
+          <Image src="/images/ed.gif" alt="Eduardo Sacco" layout="fill" />
         </Avatar>
       </Toolbar>
     </AppBar>
