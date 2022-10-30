@@ -48,6 +48,7 @@ export default function PositionedMenu() {
           <Link
             key={index}
             href={item.path}
+            style={{ textDecoration: 'none' }}
             color={router.asPath === item.path ? 'primary' : 'secondary'}
           >
             <MenuItem onClick={handleClose}>{item.label}</MenuItem>
