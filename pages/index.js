@@ -8,14 +8,47 @@ const projectContent = [
   {
     id: 1,
     imgPath: '/images/d1.jpeg',
-    heading: 'Sweet Potato',
-    description: 'Some description',
+    heading: 'Contacts API',
+    description: `Web API to handle contact records information. 
+      The API exposes endpoints to enable CRUD operations for contact records. 
+      It was done in .NET c#`,
+    link: 'https://github.com/eduardosacco/contacts-api-demo',
+    linkText: 'View in GitHub'
   },
   {
     id: 2,
     imgPath: '/images/d2.jpeg',
-    heading: 'Sweet Potato',
-    description: 'Some description',
+    heading: 'Where Profit?',
+    description: `Calculate the most profitable Uniswap liquidity pool in a given time frame.
+      Data is obtained by querying Uniswap V3 subgraph. This is actually my first Go script.`,
+    link: 'https://github.com/eduardosacco/where-profit',
+    linkText: 'View in GitHub'
+  },
+  {
+    id: 3,
+    imgPath: '/images/d3.jpeg',
+    heading: 'Market Data Aggregator',
+    description: `Parses trade data as it comes in and compute various aggregate metrics from the provided data,
+      completing a set of ten million trades in as little time as possible. This is my second Go script.`,
+    link: 'https://github.com/eduardosacco/market-data-aggregator',
+    linkText: 'View in GitHub'
+  },
+  {
+    id: 4,
+    imgPath: '/images/d4.jpeg',
+    heading: 'Financial Chat',
+    description: `A simple browser-based chat application using .NET. 
+      It has a decoupled bot that checks stock prices. It uses SignalR and RabbitMQ.`,
+    link: 'https://github.com/eduardosacco/net-core-financial-chat',
+    linkText: 'View in GitHub'
+  },
+  {
+    id: 5,
+    imgPath: '/images/d5.png',
+    heading: 'Lottery Contract',
+    description: `A simple Lottery contract made in Solidity. It includes a compile and deploy scripts and some tests.`,
+    link: 'https://github.com/eduardosacco/lottery',
+    linkText: 'View in GitHub'
   },
 ];
 
@@ -52,7 +85,7 @@ export default function Home() {
                 description={`I am an electronic/software engineer from Argentina.
                   I love to code and everything tech related. I am currently looking for my next place to continue my Web3 journey!
                   I love going on mountaineering expeditions and going to the beach with my girlfriend and my dogs Nasta and Pantu.`}
-                linkText='Checkout my portfolio page'
+                linkText="Checkout my portfolio page"
                 link="https://eduardosacco.github.io/"
               />
             </Box>
