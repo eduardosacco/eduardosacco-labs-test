@@ -45,7 +45,7 @@ This page required some design decisions to be taken around some limitations of 
 
 ## Cool additions
 
-To add some fizz to the Crypto page I added a component to show the [animated Metamask logo](https://www.npmjs.com/package/@metamask/logo). Also the page will show a [Blockies](https://github.com/ethereum/blockies) icon for the account. If Blockies are used in Metamask as account avatars it will show the corresponding one to the connected account.
+To add some fizz to the Crypto page I added a component to show the [animated Metamask logo](https://www.npmjs.com/package/@metamask/logo). Also the page will show the [Blockies](https://github.com/ethereum/blockies) icon for the account.
 
 To experiment with the theming capabilities of Material UI a theme switcher was added to the NavBar. This enables switching from dark to light themes. Dark themes are _objectively_ way cooler so thats the default.
 
@@ -53,19 +53,20 @@ To experiment with the theming capabilities of Material UI a theme switcher was 
 
 #### Metamask Disconnection:
 
-It's currently not possible to trigger a proper disconnection from metamask. To do this correctly the user has to disconnect from the extension itself. https://github.com/MetaMask/metamask-extension/issues/8990.
+It's currently [not possible to trigger a proper disconnection from metamask](https://github.com/MetaMask/metamask-extension/issues/8990). To do this correctly the user has to disconnect from the extension itself.
+
 The approach taken here was to show the user a modal with instructions on how he can disconnect using metamask when the disconnect button is pressed.
 
 #### Use-Metamask and server side rendering:
 
-The use-metamask library is not compatible with server side rendering apps by default since it uses global window. 
-There is currently an open pr (https://github.com/mdtanrikulu/use-metamask/pull/19) with a fix for this issue (https://github.com/mdtanrikulu/use-metamask/issues/18).
-More info about the issue: https://dev.to/apkoponen/how-to-disable-server-side-rendering-ssr-in-next-js-1563
+The use-metamask library is not compatible with server side rendering apps by default since it uses global window. There is currently an [open pr](https://github.com/mdtanrikulu/use-metamask/pull/19) with a fix for this [issue](https://github.com/mdtanrikulu/use-metamask/issues/18).
+
 To bypass this the component that uses the use-metamask library was wrapped in a component that disables rendering nested components in server side.
 
 #### Use-Metamask connect after disconnect:
 
-The library will not connect after being disconnected from metamask. To bypass this issue the connect button will trigger a page reload which in turn will trigger the use effect that starts the use-metamask connection.
+The library will not connect after being disconnected from metamask.
+To bypass this issue the connect button will trigger a page reload which in turn will trigger the use effect that starts the use-metamask connection.
 
 ## Known issues
 * Metamask animated logo dual viewer bug occurs when running locally. Need to investigate more to understand why this occurs. Hypothesis: Its related to SSR, first test of wrapping the component with disable SSR did not solve it though.
