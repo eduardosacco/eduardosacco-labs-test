@@ -18,6 +18,8 @@ export default function Album(props) {
       <Container maxWidth="lg">
         <Grid
           container
+          justifyContent="center"
+          alignItems="stretch"
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
@@ -25,7 +27,7 @@ export default function Album(props) {
             props.cards.map((card) => (
               <Grid key={card} item xs={4} sm={4} md={6}>
                 <Card>
-                  <CardMedia style={{ height: 400 }} title={card.heading}>
+                  <CardMedia sx={{ height: 400 }} title={card.heading}>
                     <Box
                       sx={{
                         position: 'relative',
