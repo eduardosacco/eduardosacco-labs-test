@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import Image from 'next/image';
+import Link from '../src/Link';
 
 export default function CardLongResponsive(props) {
   const image = (
@@ -35,28 +36,33 @@ export default function CardLongResponsive(props) {
     <Grid item xs={4} sm={4} md={6}>
       <Box
         sx={{
+          p: 4,
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
         }}
       >
-        <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography gutterBottom variant="h5">
+        <CardContent sx={{ display: 'flex', flexDirection: 'column'}}>
+          <Typography sx={{my:2}} gutterBottom variant="h5" color='secondary'>
             {props.heading}
           </Typography>
           <Typography>{props.description}</Typography>
         </CardContent>
-        <CardActions
-          sx={{
-            display: 'flex',
-            alignSelf: 'flex-end',
-          }}
-        >
-          <Button size="small" color="primary" variant="outlined">
-            View
-          </Button>
-        </CardActions>
+        {props.link && (
+          <CardActions
+            sx={{
+              display: 'flex',
+              alignSelf: 'flex-end',
+            }}
+          >
+            <Link href={props.link}>
+            <Button size="small" color="primary" variant="outlined">
+              View
+            </Button>
+          </Link>
+          </CardActions>
+        )}
       </Box>
     </Grid>
   );
