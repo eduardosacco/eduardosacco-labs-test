@@ -36,7 +36,7 @@ export default function CardLongResponsive(props) {
     <Grid item xs={4} sm={4} md={6}>
       <Box
         sx={{
-
+          p: 2,
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
