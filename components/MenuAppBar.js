@@ -12,9 +12,11 @@ export default function MenuAppBar() {
     <AppBar position="static">
       <Toolbar>
         <PositionedMenu />
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {`Ed's Experiments Lab`}
-        </Typography>
+        <Box sx={{ mx: 1, display: 'flex', textAlign: 'center', flexGrow: 1 }}>
+          <Typography variant="h6" component="div">
+            {`Ed's Experiments Lab`}
+          </Typography>
+        </Box>
         <Box sx={{ mx: 1 }}>
           <ThemeSwitcher />
         </Box>
