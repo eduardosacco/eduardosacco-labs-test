@@ -4,7 +4,7 @@ import React from 'react';
 const ColorModeContext = React.createContext({});
 
 export const ColorModeProvider = ({ children }) => {
-  const [colorMode, setColorMode] = React.useState('light');
+  const [colorMode, setColorMode] = React.useState('dark');
   const toggleColorMode = React.useCallback(() => {
     console.log('toggled color mode');
     setColorMode((colorMode) => (colorMode === 'light' ? 'dark' : 'light'));
