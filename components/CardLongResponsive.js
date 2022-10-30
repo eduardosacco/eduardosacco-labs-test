@@ -56,9 +56,9 @@ export default function CardLongResponsive(props) {
               alignSelf: 'flex-end',
             }}
           >
-            <Link href={props.link}>
+            <Link style={{ textDecoration: 'none' }} href={props.link}>
             <Button size="small" color="primary" variant="outlined">
-              View
+              {props.linkText ? props.linkText : 'View'}
             </Button>
           </Link>
           </CardActions>
