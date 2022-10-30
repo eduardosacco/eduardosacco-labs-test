@@ -26,7 +26,7 @@ const projectContent = [
   },
   {
     id: 3,
-    imgPath: '/images/d3.jpeg',
+    imgPath: '/images/d3.png',
     heading: 'Market Data Aggregator',
     description: `Parses trade data as it comes in and compute various aggregate metrics from the provided data,
       completing a set of ten million trades in as little time as possible. This is my second Go script.`,
