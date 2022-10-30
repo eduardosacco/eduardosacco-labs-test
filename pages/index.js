@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Head from 'next/head';
 import Album from '../components/Album';
 import CardLongResponsive from '../components/CardLongResponsive';
 
@@ -13,7 +14,7 @@ const projectContent = [
       The API exposes endpoints to enable CRUD operations for contact records. 
       It was done in .NET c#`,
     link: 'https://github.com/eduardosacco/contacts-api-demo',
-    linkText: 'View in GitHub'
+    linkText: 'View in GitHub',
   },
   {
     id: 2,
@@ -22,7 +23,7 @@ const projectContent = [
     description: `Calculate the most profitable Uniswap liquidity pool in a given time frame.
       Data is obtained by querying Uniswap V3 subgraph. This is actually my first Go script.`,
     link: 'https://github.com/eduardosacco/where-profit',
-    linkText: 'View in GitHub'
+    linkText: 'View in GitHub',
   },
   {
     id: 3,
@@ -31,7 +32,7 @@ const projectContent = [
     description: `Parses trade data as it comes in and compute various aggregate metrics from the provided data,
       completing a set of ten million trades in as little time as possible. This is my second Go script.`,
     link: 'https://github.com/eduardosacco/market-data-aggregator',
-    linkText: 'View in GitHub'
+    linkText: 'View in GitHub',
   },
   {
     id: 4,
@@ -40,7 +41,7 @@ const projectContent = [
     description: `A simple browser-based chat application using .NET. 
       It has a decoupled bot that checks stock prices. It uses SignalR and RabbitMQ.`,
     link: 'https://github.com/eduardosacco/net-core-financial-chat',
-    linkText: 'View in GitHub'
+    linkText: 'View in GitHub',
   },
   {
     id: 5,
@@ -48,13 +49,20 @@ const projectContent = [
     heading: 'Lottery Contract',
     description: `A simple Lottery contract made in Solidity. It includes a compile and deploy scripts and some tests.`,
     link: 'https://github.com/eduardosacco/lottery',
-    linkText: 'View in GitHub'
+    linkText: 'View in GitHub',
   },
 ];
 
 export default function Home() {
   return (
     <>
+      <Head>
+        <title>Ed&apos;s Lab Home</title>
+        <meta
+          name="description"
+          content="The home for Ed's web3 and programming experiments."
+        />
+      </Head>
       <Container maxWidth="lg">
         <Box
           sx={{

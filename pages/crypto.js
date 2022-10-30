@@ -2,6 +2,7 @@ import { Button, MenuItem, Modal, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
@@ -244,6 +245,13 @@ function Web3Connect({ input, result, errorMessage }) {
 
   return (
     <>
+      <Head>
+        <title>Crypto</title>
+        <meta
+          name="description"
+          content="Connect with your Metamask Wallet"
+        />
+      </Head>
       <Container maxWidth="lg">
         <Box
           sx={{
@@ -259,8 +267,11 @@ function Web3Connect({ input, result, errorMessage }) {
           </Typography>
           <Box
             sx={{
-               my: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center'
-              }}
+              my: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
           >
             <MetamaskAnimatedLogo />
           </Box>

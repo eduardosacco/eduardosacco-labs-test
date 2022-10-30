@@ -2,6 +2,7 @@ import { Button, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { numberToWords } from '../api/number-to-words';
@@ -33,6 +34,10 @@ export default function Test({ input, result, errorMessage }) {
 
   return (
     <>
+      <Head>
+        <title>Test</title>
+        <meta name="description" content="Convert number to words." />
+      </Head>
       <Container maxWidth="lg">
         <Box
           sx={{
