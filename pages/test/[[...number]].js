@@ -108,7 +108,7 @@ function validateInput(input) {
   return '';
 }
 
-export const getServerSideProps = async (context) => {
+export async function getServerSideProps(context) {
   const input = context.query.number && context.query.number[0];
 
   if (!input) {
