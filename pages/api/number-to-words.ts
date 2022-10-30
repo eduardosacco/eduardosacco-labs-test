@@ -65,6 +65,7 @@ export function numberToWords(input: string | number): ConvertionResult {
     'ninety',
   ];
 
+  // Handle input type
   let num: number;
   let numStr: string;
   if (typeof input === 'number') {
@@ -100,10 +101,13 @@ export function numberToWords(input: string | number): ConvertionResult {
 
   chunks.forEach((chunk, index) => {
     if (+chunk) {
+      // Check if we have hundreds and add to result
       if (+chunk[0]) {
         result += NUMBER_FIRST_NAMED[+chunk.charAt(0)] + ' hundred ';
       }
 
+      //Check if the digit at the tens position is >= 2 since the format changes
+      // Depending on that add to result 
       if (+chunk[1] > 1) {
         result += NUMBER_TENS[+chunk.charAt(1)];
         if (+chunk.charAt(2)) {
@@ -113,6 +117,7 @@ export function numberToWords(input: string | number): ConvertionResult {
         result += NUMBER_FIRST_NAMED[+chunk.substring(1)] + ' ';
       }
 
+      // Add the order for the current chunk to result
       result += NUMBER_ORDER[order - index] + ' ';
     }
   });
@@ -126,13 +131,16 @@ export function getChunksOfThree(n: string): Array<string> {
   const totalChunks = Math.ceil(n.length / 3);
   const remainder = n.length % 3;
   const nWholeChuncks = n.length / 3;
+  //Init array for the totality of the chunks
   const chunks = new Array<string>(totalChunks);
 
+  //Get the whole chunks (of 3) from right to left and assign them to their pos in the chinks array
   for (let i = 1; i <= nWholeChuncks; i++) {
     const index = n.length - i * 3;
     chunks[totalChunks - i] = n.substring(index, index + 3);
   }
 
+  // Get the last incomplete chuck (if any) and zero pad it to complete 3 digits
   if (remainder) {
     chunks[0] = n.substring(0, remainder).padStart(3, '0');
   }
