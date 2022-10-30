@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import httpConstants from 'http-status';
 
-type ConvertionResult = {
+type ConversionResult = {
   isSuccess: boolean;
   data: string;
 };
@@ -24,7 +24,7 @@ export default function handler(
   res.status(statusCode).json({ data: result.data });
 }
 
-export function numberToWords(input: string | number): ConvertionResult {
+export function numberToWords(input: string | number): ConversionResult {
   //Define number words constants
   const MAX_ALLOWED_NUMBER = 9999999999999; //This number is kind of arbitrary
   const NUMBER_ORDER = ['', '', 'thousand', 'million', 'billion', 'trillion'];
@@ -130,12 +130,12 @@ export function numberToWords(input: string | number): ConvertionResult {
 export function getChunksOfThree(n: string): Array<string> {
   const totalChunks = Math.ceil(n.length / 3);
   const remainder = n.length % 3;
-  const nWholeChuncks = n.length / 3;
+  const nWholeChunks = n.length / 3;
   //Init array for the totality of the chunks
   const chunks = new Array<string>(totalChunks);
 
   //Get the whole chunks (of 3) from right to left and assign them to their pos in the chinks array
-  for (let i = 1; i <= nWholeChuncks; i++) {
+  for (let i = 1; i <= nWholeChunks; i++) {
     const index = n.length - i * 3;
     chunks[totalChunks - i] = n.substring(index, index + 3);
   }
