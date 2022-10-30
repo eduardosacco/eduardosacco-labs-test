@@ -11,47 +11,28 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Image from 'next/image';
 
-const cards = [1, 2, 3, 4];
+const cards = [
+  {
+    id: 1,
+    imgPath: '/images/d1.jpeg',
+    heading: 'Sweet Potato',
+    description: 'Some description',
+  },
+];
 
 export default function Album() {
   return (
     <>
       <Container maxWidth="lg">
-        <Box
-          sx={{
-            my: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          <Typography variant="h4" color="secondary" gutterBottom>
-            Project Portfolio
-          </Typography>
-          <Typography
-            variant="h6"
-            align="center"
-            color="textSecondary"
-            paragraph
-          >
-            I love to learn new stuff &#129299;. Check out some of the projects
-            I have worked on. There are different types technologies used in
-            these projects. The pictures are just my dogs because I think they
-            are cool.
-          </Typography>
-        </Box>
-      </Container>
-
-      <Container maxWidth="lg">
-        <Grid container spacing={2}>
           {cards.map((card) => (
-            <Grid key={card} xs={6}>
+            <Grid key={card} item xs={4} sm={4} md={6}>
               <Card>
-                <CardMedia
-                  style={{ height: 400}}
-                  title="Your title"
-                >
+                <CardMedia style={{ height: 400 }} title={card.heading}>
                   <Box
                     sx={{
                       position: 'relative',
@@ -61,7 +42,7 @@ export default function Album() {
                   >
                     <Image
                       alt="Image"
-                      src={`/images/d${card}.jpeg`}
+                      src={card.imgPath}
                       layout="fill"
                       objectFit="cover"
                     />
@@ -69,15 +50,12 @@ export default function Album() {
                 </CardMedia>
                 <CardContent>
                   <Typography gutterBottom variant="h5">
-                    Heading
+                    {card.heading}
                   </Typography>
-                  <Typography>
-                    This is a media card. You can use this section to describe
-                    the content.
-                  </Typography>
+                  <Typography>{card.description}</Typography>
                 </CardContent>
-                <CardActions>
-                  <Button size="small" color="primary">
+                <CardActions sx={{ display: 'flex', justifyContent: 'right' }}>
+                  <Button size="small" color="primary" variant="outlined">
                     View
                   </Button>
                 </CardActions>
