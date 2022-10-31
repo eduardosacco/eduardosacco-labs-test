@@ -62,81 +62,60 @@ function Web3Connect({ input, result, errorMessage }) {
   const metaMaskConnectedContent = (
     <Box
       sx={{
-        my: 2,
+        mb: 2,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        width: '100%',
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-        }}
+      <Typography
+        sx={{ mx: 1 }}
+        align="center"
+        variant="h5"
+        component="h2"
+        gutterBottom
       >
-        <Box sx={{ mx: 1 }}>
-          <Typography variant="h5" component="h2" gutterBottom>
-            You are connected with account:
-          </Typography>
-        </Box>
-        <Box sx={{ mx: 1 }}>
-          <Blockie seed={metaState.account[0]} />
-        </Box>
-        <Box sx={{ mx: 1 }}>
-          <Typography variant="h5" color="primary" component="h2" gutterBottom>
-            {metaState.account[0]}
-          </Typography>
-        </Box>
+        You are connected with account:
+      </Typography>
+
+      <Box sx={{ m: 1 }}>
+        <Blockie scale={6} seed={metaState.account[0]} />
       </Box>
+
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+        }}
+      >
+        <Typography
+          sx={{ overflowWrap: 'anywhere' }}
+          align="center"
+          variant="h5"
+          color="primary"
+          gutterBottom
+        >
+          {metaState.account[0]}
+        </Typography>
+      </Box>
+
       <Box
         sx={{
           display: 'flex',
         }}
       >
-        <Box sx={{ mx: 1 }}>
-          <Typography variant="h5" component="h2" gutterBottom>
+        <Box sx={{ mx: 1, width: '100%' }}>
+          <Typography variant="h5" gutterBottom>
             Current network chain id:
           </Typography>
         </Box>
         <Box sx={{ mx: 1 }}>
-          <Typography variant="h5" color="primary" component="h2" gutterBottom>
+          <Typography variant="h5" color="primary" gutterBottom>
             {metaState.chain.id}
           </Typography>
         </Box>
-      </Box>
-    </Box>
-  );
-
-  const metaMaskNotConnectedContent = (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-    >
-      <Typography variant="h5" component="h2" gutterBottom>
-        Connect with MetaMask
-      </Typography>
-    </Box>
-  );
-
-  const metaMaskAvailableContent = (
-    <>
-      <Box
-        sx={{
-          my: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        {metaState.isConnected
-          ? metaMaskConnectedContent
-          : metaMaskNotConnectedContent}
-        <Button
-          variant="contained"
-          disabled={false}
-          onClick={onClickConnectionHandler}
-          color={metaState.isConnected ? 'secondary' : 'primary'}
-        >
-          {metaState.isConnected ? `Disconnect` : `Connect`}
-        </Button>
       </Box>
       <Box
         sx={{
@@ -174,13 +153,48 @@ function Web3Connect({ input, result, errorMessage }) {
           </Button>
         </Box>
       </Box>
-    </>
+    </Box>
+  );
+
+  const metaMaskNotConnectedContent = (
+    <Box
+      sx={{ mb: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
+      <Typography variant="h5" component="h2" gutterBottom>
+        Connect with MetaMask
+      </Typography>
+    </Box>
+  );
+
+  const metaMaskAvailableContent = (
+    <Container maxWidth="lg">
+      <Box
+        sx={{
+          mb: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        {metaState.isConnected
+          ? metaMaskConnectedContent
+          : metaMaskNotConnectedContent}
+        <Button
+          variant="contained"
+          disabled={false}
+          onClick={onClickConnectionHandler}
+          color={metaState.isConnected ? 'secondary' : 'primary'}
+        >
+          {metaState.isConnected ? `Disconnect` : `Connect`}
+        </Button>
+      </Box>
+    </Container>
   );
 
   const metaMaskNotAvailableContent = (
     <Box
       sx={{
-        my: 2,
+        mb: 2,
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
@@ -225,7 +239,12 @@ function Web3Connect({ input, result, errorMessage }) {
           textAlign: 'center',
         }}
       >
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography
+          id="modal-modal-title"
+          align="center"
+          variant="h6"
+          component="h2"
+        >
           Use Metamask to disconnect
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -247,10 +266,7 @@ function Web3Connect({ input, result, errorMessage }) {
     <>
       <Head>
         <title>Crypto</title>
-        <meta
-          name="description"
-          content="Connect with your Metamask Wallet"
-        />
+        <meta name="description" content="Connect with your Metamask Wallet" />
       </Head>
       <Container maxWidth="lg">
         <Box
@@ -262,7 +278,7 @@ function Web3Connect({ input, result, errorMessage }) {
             alignItems: 'center',
           }}
         >
-          <Typography variant="h4" component="h1" gutterBottom>
+          <Typography variant="h4" align="center" component="h1" gutterBottom>
             Web3 Metamask Connect Test
           </Typography>
           <Box
@@ -279,8 +295,8 @@ function Web3Connect({ input, result, errorMessage }) {
             ? metaMaskAvailableContent
             : metaMaskNotAvailableContent}
         </Box>
+        {disconnectModal}
       </Container>
-      {disconnectModal}
     </>
   );
 }
