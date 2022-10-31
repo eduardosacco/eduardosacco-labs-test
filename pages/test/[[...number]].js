@@ -48,7 +48,7 @@ export default function Test({ input, result, errorMessage }) {
             alignItems: 'center',
           }}
         >
-          <Typography variant="h4" component="h1" gutterBottom>
+          <Typography variant="h4" align="center" component="h1" gutterBottom>
             Convert number to words:
           </Typography>
           <Box
@@ -136,4 +136,4 @@ export async function getServerSideProps(context) {
   return {
     props: { input: input, result: result.data },
   };
-};
+}
