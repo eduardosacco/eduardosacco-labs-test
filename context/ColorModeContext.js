@@ -15,9 +15,21 @@ export const ColorModeProvider = ({ children }) => {
       createTheme({
         palette: {
           mode: colorMode,
+          primary: {
+            main: '#00c14e',
+          },
+          secondary: {
+            main: '#e7b75f',
+          },
+          error: {
+            main: '#f25f25',
+          },
         },
         typography: {
-          fontFamily: 'Space Grotesk, Roboto',
+          fontFamily: 'Space Mono, Space Grotesk, Roboto',
+        },
+        shape: {
+          borderRadius: 0,
         },
       }),
     [colorMode]
