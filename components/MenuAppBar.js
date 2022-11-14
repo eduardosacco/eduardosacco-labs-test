@@ -6,15 +6,20 @@ import { Avatar } from '@mui/material';
 import Image from 'next/image';
 import PositionedMenu from './Menu';
 import ThemeSwitcher from './ThemeSwitcher';
+import Emoji from './Emoji';
 
 export default function MenuAppBar() {
   return (
     <AppBar position="static">
       <Toolbar>
         <PositionedMenu />
-        <Box sx={{ mx: 1, display: 'flex', textAlign: 'center', flexGrow: 1 }}>
-          <Typography variant="h6" component="div">
-            {`Ed's Experiments Lab`}
+        <Box
+          sx={{ mx: 1, display: 'flex', justifyContent: 'center', flexGrow: 1 }}
+        >
+          <Typography variant="h6" component="div" align="center">
+            <Emoji symbol="💻" />
+            &nbsp;{`Ed's Lab`}&nbsp;
+            <Emoji symbol="🧪" />
           </Typography>
         </Box>
         <Box sx={{ mx: 1 }}>
