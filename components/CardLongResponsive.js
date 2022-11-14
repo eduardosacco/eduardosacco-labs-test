@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import Link from '../src/Link';
+import Emoji from './Emoji';
 
 export default function CardLongResponsive(props) {
   const image = (
@@ -43,8 +44,19 @@ export default function CardLongResponsive(props) {
           justifyContent: 'space-between',
         }}
       >
-        <CardContent sx={{ display: 'flex', flexDirection: 'column'}}>
-          <Typography sx={{my:2}} gutterBottom variant="h5" color='secondary'>
+        <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Typography
+            sx={{ my: 2 }}
+            gutterBottom
+            variant="h5"
+            color="secondary"
+          >
+            {props.symbol && (
+              <span>
+                <Emoji symbol={props.symbol} />
+                &nbsp;
+              </span>
+            )}
             {props.heading}
           </Typography>
           <Typography>{props.description}</Typography>
@@ -57,10 +69,10 @@ export default function CardLongResponsive(props) {
             }}
           >
             <Link style={{ textDecoration: 'none' }} href={props.link}>
-            <Button size="small" color="primary" variant="outlined">
-              {props.linkText ? props.linkText : 'View'}
-            </Button>
-          </Link>
+              <Button size="small" color="primary" variant="outlined">
+                {props.linkText ? props.linkText : 'View'}
+              </Button>
+            </Link>
           </CardActions>
         )}
       </Box>
@@ -69,11 +81,7 @@ export default function CardLongResponsive(props) {
 
   return (
     <Card>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, md: 12 }}
-      >
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, md: 12 }}>
         {!props.imgRight && image}
         {content}
         {props.imgRight && image}

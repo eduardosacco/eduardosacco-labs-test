@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Image from 'next/image';
 import Link from '../src/Link';
+import Emoji from './Emoji';
 
 export default function Album(props) {
   return (
@@ -45,9 +46,15 @@ export default function Album(props) {
                   </CardMedia>
                   <CardContent>
                     <Typography gutterBottom variant="h5" color="secondary">
+                      {card.symbol && (
+                        <span>
+                          <Emoji symbol={card.symbol} />
+                          &nbsp;
+                        </span>
+                      )}
                       {card.heading}
                     </Typography>
-                    <Typography>{card.description}</Typography>
+                    <Typography align="justify">{card.description}</Typography>
                   </CardContent>
                   {card.link && (
                     <CardActions
