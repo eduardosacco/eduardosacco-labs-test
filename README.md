@@ -75,10 +75,20 @@ To bypass this issue the connect button will trigger a page reload which in turn
 * [x] Add SEO component to pages, title and description!!!
 * [x] Make home layout responsive
 * [x] Add css to make images responsive
-* [ ] Add image loader spinner or placeholder
+* [x] Add image loader spinner or placeholder
 * [ ] Typing: Extend TS usage to JS files.
 * [ ] Refactor crypto file, may be too much code in one file
 * [ ] Add some basic front end tests
 
 ## Possible future additions
 * [ ] Create a page to interact with the lottery contract
+
+## Post submission improvements
+* Tweaked theme colors and made it more boxy. Changed typography to Space Mono since it looks cooler.
+* Added the emoji component and ised it in the cards and nav bar
+* Fixed bug where correct item was not being selected in nav bar menu items
+* Improved accessibility by adding alt text for images
+* Added priority tag to LCP image
+* Further optimized images
+* Added Plaiceholders placeholders for images
+* Removed getting unused fonts from CDN
