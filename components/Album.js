@@ -25,8 +25,8 @@ export default function Album(props) {
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
           {props.cards &&
-            props.cards.map((card) => (
-              <Grid key={card} item xs={4} sm={4} md={6}>
+            props.cards.map((card, index) => (
+              <Grid key={index} item xs={4} sm={4} md={6}>
                 <Card>
                   <CardMedia sx={{ height: 400 }} title={card.heading}>
                     <Box

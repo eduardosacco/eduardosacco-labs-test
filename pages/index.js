@@ -8,7 +8,6 @@ import Emoji from '../components/Emoji';
 
 const projectContent = [
   {
-    id: 1,
     imgPath: '/images/d1.jpeg',
     symbol: '📜',
     heading: 'Contacts API',
@@ -19,7 +18,6 @@ const projectContent = [
     linkText: 'View in GitHub',
   },
   {
-    id: 2,
     imgPath: '/images/d2.jpeg',
     symbol: '💵',
     heading: 'Where Profit?',
@@ -29,7 +27,6 @@ const projectContent = [
     linkText: 'View in GitHub',
   },
   {
-    id: 3,
     imgPath: '/images/d3.png',
     symbol: '🤖',
     heading: 'Market Data Aggregator',
@@ -39,7 +36,6 @@ const projectContent = [
     linkText: 'View in GitHub',
   },
   {
-    id: 4,
     imgPath: '/images/d4.jpeg',
     symbol: '💬',
     heading: 'Financial Chat',
@@ -49,7 +45,6 @@ const projectContent = [
     linkText: 'View in GitHub',
   },
   {
-    id: 5,
     imgPath: '/images/d5.png',
     symbol: '🍀',
     heading: 'Lottery Contract',
