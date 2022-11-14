@@ -77,7 +77,7 @@ To bypass this issue the connect button will trigger a page reload which in turn
 * [x] Add css to make images responsive
 * [x] Add image loader spinner or placeholder
 * [ ] Typing: Extend TS usage to JS files.
-* [ ] Refactor crypto file, may be too much code in one file
+* [ ] Use useMemo for component parts of crypto page
 * [ ] Add some basic front end tests
 
 ## Possible future additions
@@ -92,3 +92,4 @@ To bypass this issue the connect button will trigger a page reload which in turn
 * Further optimized images
 * Added Plaiceholders placeholders for images
 * Removed getting unused fonts from CDN
+* Made it easier to close disconect metamask modal
