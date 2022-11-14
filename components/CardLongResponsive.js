@@ -59,7 +59,7 @@ export default function CardLongResponsive(props) {
             )}
             {props.heading}
           </Typography>
-          <Typography>{props.description}</Typography>
+          <Typography align="justify">{props.description}</Typography>
         </CardContent>
         {props.link && (
           <CardActions
