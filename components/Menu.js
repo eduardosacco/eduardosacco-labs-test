@@ -17,6 +17,11 @@ export default function PositionedMenu() {
     setAnchorEl(null);
   };
 
+  const isSelectedMenuItem = (path) => {
+    const first = router.asPath.split('/')[1];
+    return '/' + first === path;
+  };
+
   const menuItems = [
     { label: 'Home', path: '/' },
     { label: 'Test', path: '/test' },
@@ -49,7 +54,7 @@ export default function PositionedMenu() {
             key={index}
             href={item.path}
             style={{ textDecoration: 'none' }}
-            color={router.asPath === item.path ? 'primary' : 'secondary'}
+            color={isSelectedMenuItem(item.path) ? 'secondary' : 'inherit'}
           >
             <MenuItem onClick={handleClose}>{item.label}</MenuItem>
           </Link>
