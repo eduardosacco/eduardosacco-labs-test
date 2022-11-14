@@ -15,14 +15,6 @@ export default class MyDocument extends Document {
                     /> */}
           <link rel="shortcut icon" href="/favicon.ico" />
           <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap"
-          />
-          <link
             href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap"
             rel="stylesheet"
           ></link>

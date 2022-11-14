@@ -26,7 +26,7 @@ export const ColorModeProvider = ({ children }) => {
           },
         },
         typography: {
-          fontFamily: 'Space Mono, Space Grotesk, Roboto',
+          fontFamily: 'Space Mono, monospace, Helvetica',
         },
         shape: {
           borderRadius: 0,
