@@ -11,12 +11,27 @@ import { useMetamask } from 'use-metamask';
 import * as Web3 from 'web3';
 import DisableInServerSide from '../components/DisableInServerSide';
 import MetamaskAnimatedLogo from '../components/MetamaskAnimatedLogo';
-import metamaskDisconnectImage from '../public/images/metamask-disconnect.png';
 import Link from '../src/Link';
 import { NETWORKS } from '../utils/networks';
 import { switchChain } from '../utils/wallet';
+import Emoji from '../components/Emoji';
+import { getPlaiceholder } from 'plaiceholder';
 
-function Web3Connect({ input, result, errorMessage }) {
+export async function getStaticProps() {
+  const { base64, img } = await getPlaiceholder(
+    '/images/metamask-disconnect.png'
+  );
+  return {
+    props: {
+      imgProps: {
+        ...img,
+        blurDataURL: base64,
+      },
+    },
+  };
+}
+
+function Web3Connect({imgProps}) {
   const { connect, metaState } = useMetamask();
   const [selectedNetwork, setSelectedNetwork] = useState('goerli');
   const [open, setOpen] = useState(false);
@@ -158,7 +173,12 @@ function Web3Connect({ input, result, errorMessage }) {
 
   const metaMaskNotConnectedContent = (
     <Box
-      sx={{ mb: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      sx={{
+        mb: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
     >
       <Typography variant="h5" component="h2" gutterBottom>
         Connect with MetaMask
@@ -202,7 +222,8 @@ function Web3Connect({ input, result, errorMessage }) {
       }}
     >
       <Typography variant="h5" component="h2" gutterBottom>
-        Metamask is not available &#128546;
+        Metamask is not available&nbsp;
+        <Emoji symbol="😢" />
         <Box sx={{ my: 4 }}>
           <Button
             variant="contained"
@@ -220,6 +241,7 @@ function Web3Connect({ input, result, errorMessage }) {
     <Modal
       open={open}
       onClose={handleClose}
+      onClick={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -257,7 +279,11 @@ function Web3Connect({ input, result, errorMessage }) {
             MetaMask support page
           </Link>
         </Typography>
-        <Image src={metamaskDisconnectImage} alt="Metamask disconnect" />
+        <Image
+          {...imgProps}
+          alt="Disconnect from Metamask"
+          placeholder="blur"
+        />
       </Box>
     </Modal>
   );
@@ -305,10 +331,10 @@ function Web3Connect({ input, result, errorMessage }) {
 // There is currently an open pr (https://github.com/mdtanrikulu/use-metamask/issues/18)
 // with a fix for this issue (https://github.com/mdtanrikulu/use-metamask/pull/19)
 // More info about the issue: https://dev.to/apkoponen/how-to-disable-server-side-rendering-ssr-in-next-js-1563
-export default function Crypto() {
+export default function Crypto(props) {
   return (
     <DisableInServerSide>
-      <Web3Connect />
+      <Web3Connect {...props} />
     </DisableInServerSide>
   );
 }
