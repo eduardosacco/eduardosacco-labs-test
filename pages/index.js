@@ -81,9 +81,7 @@ export default function Home() {
             color="primary"
             gutterBottom
           >
-            <Emoji symbol="💻" />
-            &nbsp;Welcome to Ed&apos;s Lab!&nbsp;
-            <Emoji symbol="🧪" />
+            Welcome to Ed&apos;s Lab!
           </Typography>
 
           <Container maxWidth="lg">
@@ -92,7 +90,7 @@ export default function Home() {
                 imgRight={true}
                 imgPath="/images/ed-banner.png"
                 imgAlt="ed banner"
-                symbol= '👋'
+                symbol="👋"
                 heading="Hi I'm Ed!"
                 description={`I am an electronic/software engineer from Argentina.
                   I love to code and everything tech related. I am currently looking for my next place to continue my Web3 journey!
@@ -122,8 +120,8 @@ export default function Home() {
                 color="textSecondary"
                 paragraph
               >
-                I love to learn new stuff <Emoji symbol='🤓' />. Check out some of the
-                projects I have worked on. There are different types
+                I love to learn new stuff <Emoji symbol="🤓" />. Check out some
+                of the projects I have worked on. There are different types
                 technologies used in these projects. The pictures are just my
                 dogs because I think they are cool.
               </Typography>
@@ -151,7 +149,7 @@ export default function Home() {
             <CardLongResponsive
               imgPath="/images/electronic-duo.png"
               imgAlt="electronic duo"
-              symbol='👾'
+              symbol="👾"
               heading="This is my bro Gonza"
               description={`We have been friends for more than 10 years! We have shared a lot through time.
                 We have done multiple mountaineering expeditions and there will be more in the future.
