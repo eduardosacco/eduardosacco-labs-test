@@ -28,6 +28,7 @@ export default function CardLongResponsive(props) {
           src={props.imgPath}
           layout="fill"
           objectFit="cover"
+          priority={props.priority}
         />
       </CardMedia>
     </Grid>

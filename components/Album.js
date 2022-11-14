@@ -37,7 +37,7 @@ export default function Album(props) {
                       }}
                     >
                       <Image
-                        alt="Image"
+                        alt={card.imgAlt}
                         src={card.imgPath}
                         layout="fill"
                         objectFit="cover"

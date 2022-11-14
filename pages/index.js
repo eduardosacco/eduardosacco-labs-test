@@ -9,6 +9,7 @@ import Emoji from '../components/Emoji';
 const projectContent = [
   {
     imgPath: '/images/d1.jpeg',
+    imgAlt: 'Black dog on beach',
     symbol: '📜',
     heading: 'Contacts API',
     description: `Web API to handle contact records information. 
@@ -19,6 +20,7 @@ const projectContent = [
   },
   {
     imgPath: '/images/d2.jpeg',
+    imgAlt: 'Brown dog on beach',
     symbol: '💵',
     heading: 'Where Profit?',
     description: `Calculate the most profitable Uniswap liquidity pool in a given time frame.
@@ -28,6 +30,7 @@ const projectContent = [
   },
   {
     imgPath: '/images/d3.png',
+    imgAlt: 'Black dog and brown dog on beach',
     symbol: '🤖',
     heading: 'Market Data Aggregator',
     description: `Parses trade data as it comes in and compute various aggregate metrics from the provided data,
@@ -37,6 +40,7 @@ const projectContent = [
   },
   {
     imgPath: '/images/d4.jpeg',
+    imgAlt: 'Black and white with a rope toy on its head',
     symbol: '💬',
     heading: 'Financial Chat',
     description: `A simple browser-based chat application using .NET. 
@@ -46,6 +50,7 @@ const projectContent = [
   },
   {
     imgPath: '/images/d5.png',
+    imgAlt: 'Brown dog on beach, a mate in the foreground',
     symbol: '🍀',
     heading: 'Lottery Contract',
     description: `A simple Lottery contract made in Solidity. It includes a compile and deploy scripts and some tests.`,
@@ -89,7 +94,7 @@ export default function Home() {
               <CardLongResponsive
                 imgRight={true}
                 imgPath="/images/ed-banner.png"
-                imgAlt="ed banner"
+                imgAlt="Ed and his girlfriend having a mate at the beach"
                 symbol="👋"
                 heading="Hi I'm Ed!"
                 description={`I am an electronic/software engineer from Argentina.
@@ -97,6 +102,7 @@ export default function Home() {
                   I love going on mountaineering expeditions and going to the beach with my girlfriend and my dogs Nasta and Pantu.`}
                 linkText="Checkout my portfolio page"
                 link="https://eduardosacco.github.io/"
+                priority={true}
               />
             </Box>
           </Container>
@@ -148,7 +154,7 @@ export default function Home() {
           <Container maxWidth="lg">
             <CardLongResponsive
               imgPath="/images/electronic-duo.png"
-              imgAlt="electronic duo"
+              imgAlt="The electronic duo"
               symbol="👾"
               heading="This is my bro Gonza"
               description={`We have been friends for more than 10 years! We have shared a lot through time.
