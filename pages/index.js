@@ -4,11 +4,13 @@ import Typography from '@mui/material/Typography';
 import Head from 'next/head';
 import Album from '../components/Album';
 import CardLongResponsive from '../components/CardLongResponsive';
+import Emoji from '../components/Emoji';
 
 const projectContent = [
   {
     id: 1,
     imgPath: '/images/d1.jpeg',
+    symbol: '📜',
     heading: 'Contacts API',
     description: `Web API to handle contact records information. 
       The API exposes endpoints to enable CRUD operations for contact records. 
@@ -19,6 +21,7 @@ const projectContent = [
   {
     id: 2,
     imgPath: '/images/d2.jpeg',
+    symbol: '💵',
     heading: 'Where Profit?',
     description: `Calculate the most profitable Uniswap liquidity pool in a given time frame.
       Data is obtained by querying Uniswap V3 subgraph. This is actually my first Go script.`,
@@ -28,6 +31,7 @@ const projectContent = [
   {
     id: 3,
     imgPath: '/images/d3.png',
+    symbol: '🤖',
     heading: 'Market Data Aggregator',
     description: `Parses trade data as it comes in and compute various aggregate metrics from the provided data,
       completing a set of ten million trades in as little time as possible. This is my second Go script.`,
@@ -37,6 +41,7 @@ const projectContent = [
   {
     id: 4,
     imgPath: '/images/d4.jpeg',
+    symbol: '💬',
     heading: 'Financial Chat',
     description: `A simple browser-based chat application using .NET. 
       It has a decoupled bot that checks stock prices. It uses SignalR and RabbitMQ.`,
@@ -46,6 +51,7 @@ const projectContent = [
   {
     id: 5,
     imgPath: '/images/d5.png',
+    symbol: '🍀',
     heading: 'Lottery Contract',
     description: `A simple Lottery contract made in Solidity. It includes a compile and deploy scripts and some tests.`,
     link: 'https://github.com/eduardosacco/lottery',
@@ -80,7 +86,9 @@ export default function Home() {
             color="primary"
             gutterBottom
           >
-            {`Welcome to Ed's Experiments Lab!`}
+            <Emoji symbol="💻" />
+            &nbsp;Welcome to Ed&apos;s Lab!&nbsp;
+            <Emoji symbol="🧪" />
           </Typography>
 
           <Container maxWidth="lg">
@@ -89,6 +97,7 @@ export default function Home() {
                 imgRight={true}
                 imgPath="/images/ed-banner.png"
                 imgAlt="ed banner"
+                symbol= '👋'
                 heading="Hi I'm Ed!"
                 description={`I am an electronic/software engineer from Argentina.
                   I love to code and everything tech related. I am currently looking for my next place to continue my Web3 journey!
@@ -118,7 +127,7 @@ export default function Home() {
                 color="textSecondary"
                 paragraph
               >
-                I love to learn new stuff &#129299;. Check out some of the
+                I love to learn new stuff <Emoji symbol='🤓' />. Check out some of the
                 projects I have worked on. There are different types
                 technologies used in these projects. The pictures are just my
                 dogs because I think they are cool.
@@ -147,6 +156,7 @@ export default function Home() {
             <CardLongResponsive
               imgPath="/images/electronic-duo.png"
               imgAlt="electronic duo"
+              symbol='👾'
               heading="This is my bro Gonza"
               description={`We have been friends for more than 10 years! We have shared a lot through time.
                 We have done multiple mountaineering expeditions and there will be more in the future.
