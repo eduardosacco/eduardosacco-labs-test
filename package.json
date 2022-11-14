@@ -19,6 +19,7 @@
     "@mui/material": "latest",
     "http-status": "^1.5.3",
     "next": "latest",
+    "plaiceholder": "^2.5.0",
     "react": "latest",
     "react-blockies": "^1.4.1",
     "react-dark-mode-toggle": "^0.2.0",

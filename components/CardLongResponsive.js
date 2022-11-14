@@ -24,10 +24,13 @@ export default function CardLongResponsive(props) {
         }}
       >
         <Image
+          {...props.imgProps}
           alt={props.imgAlt}
-          src={props.imgPath}
           layout="fill"
           objectFit="cover"
+          width={undefined}
+          height={undefined}
+          placeholder="blur"
           priority={props.priority}
         />
       </CardMedia>

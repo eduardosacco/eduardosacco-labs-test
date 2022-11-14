@@ -37,10 +37,13 @@ export default function Album(props) {
                       }}
                     >
                       <Image
+                        {...card.imgProps}
                         alt={card.imgAlt}
-                        src={card.imgPath}
                         layout="fill"
                         objectFit="cover"
+                        width={undefined}
+                        height={undefined}
+                        placeholder="blur"
                       />
                     </Box>
                   </CardMedia>

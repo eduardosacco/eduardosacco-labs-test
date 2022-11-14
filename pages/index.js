@@ -5,8 +5,34 @@ import Head from 'next/head';
 import Album from '../components/Album';
 import CardLongResponsive from '../components/CardLongResponsive';
 import Emoji from '../components/Emoji';
+import { getPlaiceholder } from 'plaiceholder';
 
-const projectContent = [
+const cardsContent = [
+  {
+    imgRight: true,
+    imgPath: '/images/ed-banner.png',
+    imgAlt: 'Ed and his girlfriend having a mate at the beach',
+    symbol: '👋',
+    heading: "Hi I'm Ed!",
+    description: `I am an electronic/software engineer from Argentina.
+    I love to code and everything tech related. I am currently looking for my next place to continue my Web3 journey!
+    I love going on mountaineering expeditions and going to the beach with my girlfriend and my dogs Nasta and Pantu.`,
+    linkText: 'Checkout my portfolio page',
+    link: 'https://eduardosacco.github.io/',
+    priority: true,
+  },
+  {
+    imgPath: '/images/electronic-duo.png',
+    imgAlt: 'The electronic duo',
+    symbol: '👾',
+    heading: 'This is my bro Gonza',
+    description: `We have been friends for more than 10 years! We have shared a lot through time.
+      We have done multiple mountaineering expeditions and there will be more in the future.
+      Together we are THE ELECTRONIC DUO.`,
+  },
+];
+
+const projectCardsContent = [
   {
     imgPath: '/images/d1.jpeg',
     imgAlt: 'Black dog on beach',
@@ -59,7 +85,34 @@ const projectContent = [
   },
 ];
 
-export default function Home() {
+export async function getStaticProps() {
+  const mainCardsProps = await getPlaceHoldersForImgItems(cardsContent);
+  const albumCardsProps = await getPlaceHoldersForImgItems(projectCardsContent);
+
+  return {
+    props: {
+      mainCardsProps,
+      albumCardsProps,
+    },
+  };
+}
+
+async function getPlaceHoldersForImgItems(items) {
+  return await Promise.all(
+    items.map(async (item) => {
+      const { base64, img } = await getPlaiceholder(item.imgPath);
+      return {
+        ...item,
+        imgProps: {
+          ...img,
+          blurDataURL: base64,
+        },
+      };
+    })
+  );
+}
+
+export default function Home({ mainCardsProps, albumCardsProps }) {
   return (
     <>
       <Head>
@@ -91,19 +144,7 @@ export default function Home() {
 
           <Container maxWidth="lg">
             <Box sx={{ my: 4 }}>
-              <CardLongResponsive
-                imgRight={true}
-                imgPath="/images/ed-banner.png"
-                imgAlt="Ed and his girlfriend having a mate at the beach"
-                symbol="👋"
-                heading="Hi I'm Ed!"
-                description={`I am an electronic/software engineer from Argentina.
-                  I love to code and everything tech related. I am currently looking for my next place to continue my Web3 journey!
-                  I love going on mountaineering expeditions and going to the beach with my girlfriend and my dogs Nasta and Pantu.`}
-                linkText="Checkout my portfolio page"
-                link="https://eduardosacco.github.io/"
-                priority={true}
-              />
+              <CardLongResponsive {...mainCardsProps[0]} />
             </Box>
           </Container>
 
@@ -132,7 +173,7 @@ export default function Home() {
                 dogs because I think they are cool.
               </Typography>
             </Box>
-            <Album cards={projectContent} />
+            <Album cards={albumCardsProps} />
           </Box>
 
           <Box sx={{ my: 4 }}>
@@ -152,15 +193,7 @@ export default function Home() {
           </Box>
 
           <Container maxWidth="lg">
-            <CardLongResponsive
-              imgPath="/images/electronic-duo.png"
-              imgAlt="The electronic duo"
-              symbol="👾"
-              heading="This is my bro Gonza"
-              description={`We have been friends for more than 10 years! We have shared a lot through time.
-                We have done multiple mountaineering expeditions and there will be more in the future.
-                Together we are THE ELECTRONIC DUO.`}
-            />
+            <CardLongResponsive {...mainCardsProps[1]} />
           </Container>
         </Box>
       </Container>
